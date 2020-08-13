@@ -76,7 +76,7 @@ const IndexPage = () => (
     <div css={exampleCss}>
       <h2 css={headingCss}>Working with Stack gap</h2>
       {/* real stuff */}
-      <div css={theme => stackCss({ theme, gap: 15 })}>
+      <div css={theme => stackCss({ theme, gap: 10 })}>
         <div css={theme => wrapperCss({ theme })}>
           <div css={positionerCss}>
             <ContentPlaceholder
@@ -125,13 +125,13 @@ const IndexPage = () => (
           </div>
         </div>
 
-        {/* <div css={theme => spacerCss({ theme, size: 10 })} /> */}
+        <div css={theme => spacerCss({ theme, size: 10 })} />
 
         <div css={positionerCss}>
           <ContentPlaceholder numberOfHeadingLines={1} numberOfBodyLines={3} />
         </div>
 
-        {/* <div css={theme => spacerCss({ theme, size: 10 })} /> */}
+        <div css={theme => spacerCss({ theme, size: 10 })} />
 
         <div css={theme => wrapperCss({ theme })}>
           <div css={positionerCss}>
@@ -160,7 +160,7 @@ const IndexPage = () => (
           <ContentPlaceholder numberOfHeadingLines={1} numberOfBodyLines={3} />
         </div>
 
-        {/* <div css={theme => spacerCss({ theme, size: 10 })} /> */}
+        <div css={theme => spacerCss({ theme, size: 10 })} />
 
         <div css={positionerCss}>
           <ContentPlaceholder
@@ -171,8 +171,7 @@ const IndexPage = () => (
           />
         </div>
 
-        {/* 
-        <div css={theme => spacerCss({ theme, size: 10 })} /> */}
+        <div css={theme => spacerCss({ theme, size: 10 })} />
 
         <div css={positionerCss}>
           <ContentPlaceholder numberOfHeadingLines={1} numberOfBodyLines={3} />
@@ -267,9 +266,9 @@ const IndexPage = () => (
         <div
           css={theme => ({
             display: `grid`,
-            gridTemplateColumns: `1fr 1fr 1fr`,
+            // gridTemplateColumns: `1fr 1fr 1fr`,
             // gridTemplateColumns: `repeat(3, 1fr)`,
-            // gridTemplateColumns: `repeat(auto-fill, minmax(15rem, 1fr))`,
+            gridTemplateColumns: `repeat(auto-fill, minmax(15rem, 1fr))`,
             gap: theme.space[10],
           })}
         >

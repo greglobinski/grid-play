@@ -1,4 +1,4 @@
-const showHelper = false
+const showHelper = true
 
 export const positionerCss = theme => {
   return {

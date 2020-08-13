@@ -28,6 +28,7 @@ const textCss = theme => ({
   display: `grid`,
   gap: theme.space[7],
   alignItems: `start`,
+  // alignContent: `center`,
 })
 
 const headingCss = theme => ({
