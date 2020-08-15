@@ -369,18 +369,13 @@ const IndexPage = () => (
     <div css={exampleCss}>
       <h2 css={headingCss}>Example 3 - remove viewport padding on mobile</h2>
       {/* real stuff */}
-
       <div css={positionerCss}>
         <div
           css={theme => {
-            console.log(theme.mediaQueries)
             return {
               display: `grid`,
-
               gridTemplateColumns: `1fr`,
               gap: theme.space[6],
-
-              alignItems: `start`,
               marginLeft: `-${theme.space[8]}`,
               marginRight: `-${theme.space[8]}`,
 
@@ -409,7 +404,120 @@ const IndexPage = () => (
       </div>
       {/*  end of real stuff */}
     </div>
+
+    {/*  next example */}
+
+    <div css={exampleCss}>
+      <h2 css={headingCss}>Example 4 - hanging images</h2>
+      {/* real stuff */}
+
+      <div css={theme => example4Css({ theme })}>
+        <ContentPlaceholder numberOfHeadingLines={2} isHorizontal={true} />
+        <ContentPlaceholder
+          picture={true}
+          numberOfHeadingLines={0}
+          numberOfBodyLines={0}
+        />
+        <ContentPlaceholder numberOfHeadingLines={0} numberOfBodyLines={5} />
+      </div>
+
+      <div css={theme => [example4Css({ theme, imageFirst: true })]}>
+        <ContentPlaceholder numberOfHeadingLines={2} isHorizontal={true} />
+        <ContentPlaceholder
+          picture={true}
+          numberOfHeadingLines={0}
+          numberOfBodyLines={0}
+        />
+        <ContentPlaceholder numberOfHeadingLines={0} numberOfBodyLines={5} />
+      </div>
+
+      <div css={theme => wrapperCss({ theme })}>
+        <div css={positionerCss}>
+          <ContentPlaceholder numberOfHeadingLines={2} numberOfBodyLines={6} />
+        </div>
+      </div>
+    </div>
+
+    {/*  end of real stuff */}
   </Layout>
 )
 
 export default IndexPage
+
+const example4Css = ({ theme, imageFirst = false }) => [
+  positionerCss(theme),
+  {
+    display: `grid`,
+    gap: theme.space[6],
+    gridTemplateColumns: `1fr`,
+
+    [theme.mediaQueries.tablet]: {
+      gridTemplateColumns: `1fr 1fr`,
+
+      "& > div:nth-of-type(1)": {
+        gridColumn: `1`,
+        gridRow: `1`,
+      },
+
+      "& > div:nth-of-type(2)": {
+        gridRow: `1 / span 2`,
+        gridColumn: `2`,
+      },
+
+      "& > div:nth-of-type(3)": {
+        gridRow: `2`,
+      },
+    },
+
+    [theme.mediaQueries.desktop]: {
+      gridTemplateColumns: `auto repeat(12, minmax(0, 4.5rem)) auto`,
+      margin: 0,
+      padding: 0,
+      maxWidth: `none`,
+
+      "& > div:nth-of-type(1)": {
+        gridColumn: `2 / span 6`,
+        marginLeft: theme.space[4],
+      },
+
+      "& > div:nth-of-type(2)": {
+        gridColumn: `9 / span 6`,
+        marginRight: theme.space[8], // remove if you want the picture stick to the right viewport edge
+      },
+
+      "& > div:nth-of-type(3)": {
+        gridColumn: `2 / span 6`,
+        marginLeft: theme.space[4],
+      },
+    },
+  },
+  imageFirst && {
+    [theme.mediaQueries.tablet]: {
+      "& > div:nth-of-type(1)": {
+        gridColumn: `2`,
+      },
+
+      "& > div:nth-of-type(2)": {
+        gridColumn: `1`,
+      },
+    },
+
+    [theme.mediaQueries.desktop]: {
+      "& > div:nth-of-type(1)": {
+        gridColumn: `8 / span 6`,
+        marginRight: theme.space[4],
+        marginLeft: 0,
+      },
+      "& > div:nth-of-type(2)": {
+        gridColumn: `1 / span 6`,
+        marginLeft: theme.space[8], // remove if you want the picture stick to the left viewport edge
+        marginRight: 0,
+      },
+      "& > div:nth-of-type(3)": {
+        gridColumn: `8 / span 6`,
+        marginRight: theme.space[4],
+        marginLeft: 0,
+      },
+    },
+  },
+]
